@@ -10,7 +10,6 @@ const Swipeout = require('react-native-swipeout')
 const StatusBar = require('./components/StatusBar');
 const ActionButton = require('./components/ActionButton');
 const styles = require('./styles.js')
-const constants = styles.constants;
 
 const {
   AppRegistry,

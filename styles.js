@@ -1,6 +1,5 @@
 const React = require('react-native')
 const {StyleSheet} = React
-
 const constants = {
   actionColor: '#24CE84'
 };
