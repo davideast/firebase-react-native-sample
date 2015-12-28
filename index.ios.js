@@ -4,26 +4,25 @@
  */
 'use strict';
 
-var React = require('react-native');
-var Firebase = require('firebase');
-var Swipeout = require('react-native-swipeout')
-var styles = require('./styles.js')
-var {
+const React = require('react-native');
+const Firebase = require('firebase');
+const Swipeout = require('react-native-swipeout')
+const StatusBar = require('./components/StatusBar');
+const ActionButton = require('./components/ActionButton');
+const styles = require('./styles.js')
+const constants = styles.constants;
+
+const {
   AppRegistry,
   ListView,
   StyleSheet,
   Text,
   View,
-  Component,
   TouchableHighlight,
   AlertIOS,
 } = React;
 
-var constants = {
-  actionColor: '#24CE84'
-};
-
-var FirebaseUrl = 'https://firereactbasenative.firebaseio.com/';
+const FirebaseUrl = 'https://firereactbasenative.firebaseio.com/';
 
 class FirebaseReactNativeSample extends React.Component {
 
@@ -49,7 +48,7 @@ class FirebaseReactNativeSample extends React.Component {
       // get children as an array
       var items = [];
       snap.forEach((child) => {
-        var item = {
+        const item = {
           title: child.val().title,
           _key: child.key()
         };
@@ -68,7 +67,25 @@ class FirebaseReactNativeSample extends React.Component {
     this.listenForItems(this.itemsRef);
   }
 
-  addItem() {
+  render() {
+    return (
+      <View style={styles.container}>
+
+        <StatusBar title="Grocery List" />
+
+        <ListView
+          scrollEnabled={this.state.scrollEnabled}
+          dataSource={this.state.dataSource}
+          renderRow={this._renderItem.bind(this)}
+          style={styles.listview}/>
+
+        <ActionButton onPress={this._addItem.bind(this)} title="Add" />
+
+      </View>
+    )
+  }
+
+  _addItem() {
     AlertIOS.alert(
       'Add New Item',
       null,
@@ -84,68 +101,26 @@ class FirebaseReactNativeSample extends React.Component {
     );
   }
 
-  render() {
-    return (
-      <View style={styles.container}>
+  _renderItem(item) {
 
-        <View style={styles.statusbar}/>
-        <View style={styles.navbar}>
-          <Text style={styles.navbarTitle}>Grocery List</Text>
-        </View>
-
-        <ListView
-          scrollEnabled={this.state.scrollEnabled}
-          dataSource={this.state.dataSource}
-          renderRow={this.renderItem}
-          style={styles.listview}/>
-
-        <View style={styles.action}>
-          <TouchableHighlight
-            underlayColor={constants.actionColor}
-            onPress={this.addItem.bind(this)}>
-            <Text style={styles.actionText}>Add</Text>
-          </TouchableHighlight>
-        </View>
-
-      </View>
-    )
-  }
-
-  renderItem(item) {
-
-    var swipeoutBtns = [
-      {
-        text: 'Delete',
-        backgroundColor: '#f00',
-        color: '#fff',
-        underlayColor: '#f00',
-        autoClose: true,
-        onPress: function() {
-          var ref = new Firebase(FirebaseUrl);
-          var itemRef = ref.child('items').child(item._key);
-          itemRef.remove();
-        }
-      }
-    ];
-
-    console.log(swipeoutBtns);
+    const onPress = () => {
+      AlertIOS.alert(
+        'Delete',
+        null,
+        [
+          {text: 'Delete', onPress: (text) => this.itemsRef.child(item._key).remove()},
+          {text: 'Cancel', onPress: (text) => console.log('Cancelled')}
+        ],
+        'default'
+      );
+    };
 
     return (
-      <Swipeout right={swipeoutBtns} autoClose={true}>
+      <TouchableHighlight onPress={onPress}>
         <View style={styles.li}>
           <Text style={styles.liText}>{item.title}</Text>
         </View>
-      </Swipeout>
-    );
-  }
-
-  renderLoadingView() {
-    return (
-      <View style={styles.container}>
-        <Text>
-          Loading items...
-        </Text>
-      </View>
+      </TouchableHighlight>
     );
   }
 
