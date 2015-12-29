@@ -6,9 +6,9 @@
 
 const React = require('react-native');
 const Firebase = require('firebase');
-const Swipeout = require('react-native-swipeout')
 const StatusBar = require('./components/StatusBar');
 const ActionButton = require('./components/ActionButton');
+const ListItem = require('./components/ListItem');
 const styles = require('./styles.js')
 
 const {
@@ -115,11 +115,7 @@ class FirebaseReactNativeSample extends React.Component {
     };
 
     return (
-      <TouchableHighlight onPress={onPress}>
-        <View style={styles.li}>
-          <Text style={styles.liText}>{item.title}</Text>
-        </View>
-      </TouchableHighlight>
+      <ListItem item={item} onPress={onPress} />
     );
   }
 
