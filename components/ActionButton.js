@@ -3,16 +3,9 @@
 const React = require('react-native');
 const styles = require('../styles.js')
 const constants = styles.constants;
-
-const {
-  StyleSheet,
-  Text,
-  View,
-  TouchableHighlight,
-} = React;
+const { StyleSheet, Text, View, TouchableHighlight} = React;
 
 class ActionButton extends React.Component {
-
   render() {
     return (
       <View style={styles.action}>
@@ -24,7 +17,6 @@ class ActionButton extends React.Component {
       </View>
     );
   }
-  
 }
 
 module.exports = ActionButton;

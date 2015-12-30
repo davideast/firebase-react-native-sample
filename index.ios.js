@@ -30,9 +30,7 @@ class FirebaseReactNativeSample extends React.Component {
     this.state = {
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
-      }),
-      loaded: false,
-      scrollEnabled: true
+      })
     };
     this.itemsRef = this.getRef().child('items');
   }
@@ -47,16 +45,14 @@ class FirebaseReactNativeSample extends React.Component {
       // get children as an array
       var items = [];
       snap.forEach((child) => {
-        const item = {
+        items.push({
           title: child.val().title,
           _key: child.key()
-        };
-        items.push(item);
+        });
       });
 
       this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(items),
-        loaded: true
+        dataSource: this.state.dataSource.cloneWithRows(items)
       });
 
     });
@@ -73,7 +69,6 @@ class FirebaseReactNativeSample extends React.Component {
         <StatusBar title="Grocery List" />
 
         <ListView
-          scrollEnabled={this.state.scrollEnabled}
           dataSource={this.state.dataSource}
           renderRow={this._renderItem.bind(this)}
           style={styles.listview}/>
@@ -104,10 +99,10 @@ class FirebaseReactNativeSample extends React.Component {
 
     const onPress = () => {
       AlertIOS.alert(
-        'Delete',
+        'Complete',
         null,
         [
-          {text: 'Delete', onPress: (text) => this.itemsRef.child(item._key).remove()},
+          {text: 'Complete', onPress: (text) => this.itemsRef.child(item._key).remove()},
           {text: 'Cancel', onPress: (text) => console.log('Cancelled')}
         ],
         'default'
