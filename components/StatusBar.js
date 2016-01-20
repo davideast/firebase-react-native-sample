@@ -1,16 +1,9 @@
 'use strict';
-
 const React = require('react-native');
 const styles = require('../styles.js')
-
-const {
-  StyleSheet,
-  Text,
-  View,
-} = React;
+const { StyleSheet, Text, View} = React;
 
 class StatusBar extends React.Component {
-
   render() {
     return (
       <View>
@@ -21,7 +14,6 @@ class StatusBar extends React.Component {
       </View>
     );
   }
-
 }
 
 module.exports = StatusBar;
