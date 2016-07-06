@@ -1,11 +1,11 @@
 /**
- * Sample React Native App
+ * Sample Firebase & React Native App
  * https://github.com/davideast/firebase-react-native-sample
  */
 'use strict';
 
 const React = require('react-native');
-const Firebase = require('firebase');
+const firebase = require('firebase');
 const StatusBar = require('./components/StatusBar');
 const ActionButton = require('./components/ActionButton');
 const ListItem = require('./components/ListItem');
@@ -21,7 +21,14 @@ const {
   AlertIOS,
 } = React;
 
-const FirebaseUrl = 'https://firereactbasenative.firebaseio.com/';
+// Initialize Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyC3ebdIS2Hyt0QDL7A4_QJC0Nuu6lK6jUE",
+  authDomain: "firereactbasenative.firebaseapp.com",
+  databaseURL: "https://firereactbasenative.firebaseio.com",
+  storageBucket: "",
+};
+const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 class FirebaseReactNativeSample extends React.Component {
 
@@ -36,7 +43,7 @@ class FirebaseReactNativeSample extends React.Component {
   }
 
   getRef() {
-    return new Firebase(FirebaseUrl);
+    return firebaseApp.database().ref();
   }
 
   listenForItems(itemsRef) {
@@ -47,7 +54,7 @@ class FirebaseReactNativeSample extends React.Component {
       snap.forEach((child) => {
         items.push({
           title: child.val().title,
-          _key: child.key()
+          _key: child.key
         });
       });
 
