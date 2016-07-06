@@ -2,6 +2,8 @@
   <h2 align="center">Firebase React Native App</h2>
 </p>
 
+![Logo](firebase-react.png)
+
 ### 7/6/16 - Updated to 3.1.0 of the Firebase SDK
 With the new 3.1.0 SDK, Firebase Database and Firebase Auth, now work with React Native. 
 Rather than use `new Firebase(url)` like with the old SDK, you now configure firebase with `firebase.initializeApp(config)`,
@@ -26,6 +28,4 @@ const itemsRef = rootRef.child('items');
 ```
 
 ### [Tutorial (will be updated soon)- https://firebase.googleblog.com/2016/01/the-beginners-guide-to-react-native-and_84.html](https://firebase.googleblog.com/2016/01/the-beginners-guide-to-react-native-and_84.html)
-
-![Logo](firebase-react.png)
 
