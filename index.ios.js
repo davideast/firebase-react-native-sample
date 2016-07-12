@@ -79,6 +79,7 @@ class FirebaseReactNativeSample extends Component {
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this._renderItem.bind(this)}
+          enableEmptySections={true}
           style={styles.listview}/>
 
         <ActionButton onPress={this._addItem.bind(this)} title="Add" />
