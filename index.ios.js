@@ -4,7 +4,8 @@
  */
 'use strict';
 
-const React = require('react-native');
+import React, {Component} from 'react';
+import ReactNative from 'react-native';
 const firebase = require('firebase');
 const StatusBar = require('./components/StatusBar');
 const ActionButton = require('./components/ActionButton');
@@ -19,7 +20,7 @@ const {
   View,
   TouchableHighlight,
   AlertIOS,
-} = React;
+} = ReactNative;
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -30,7 +31,7 @@ const firebaseConfig = {
 };
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 
-class FirebaseReactNativeSample extends React.Component {
+class FirebaseReactNativeSample extends Component {
 
   constructor(props) {
     super(props);
