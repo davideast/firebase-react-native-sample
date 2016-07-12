@@ -88,10 +88,11 @@ class FirebaseReactNativeSample extends Component {
   }
 
   _addItem() {
-    AlertIOS.alert(
+    AlertIOS.prompt(
       'Add New Item',
       null,
       [
+        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
         {
           text: 'Add',
           onPress: (text) => {
