@@ -4,7 +4,8 @@
  */
 'use strict';
 
-const React = require('react-native');
+import React, {Component} from 'react';
+import ReactNative from 'react-native';
 const firebase = require('firebase');
 const StatusBar = require('./components/StatusBar');
 const ActionButton = require('./components/ActionButton');
@@ -19,7 +20,7 @@ const {
   View,
   TouchableHighlight,
   AlertIOS,
-} = React;
+} = ReactNative;
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -30,7 +31,7 @@ const firebaseConfig = {
 };
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 
-class FirebaseReactNativeSample extends React.Component {
+class FirebaseReactNativeSample extends Component {
 
   constructor(props) {
     super(props);
@@ -78,6 +79,7 @@ class FirebaseReactNativeSample extends React.Component {
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this._renderItem.bind(this)}
+          enableEmptySections={true}
           style={styles.listview}/>
 
         <ActionButton onPress={this._addItem.bind(this)} title="Add" />
@@ -87,10 +89,11 @@ class FirebaseReactNativeSample extends React.Component {
   }
 
   _addItem() {
-    AlertIOS.alert(
+    AlertIOS.prompt(
       'Add New Item',
       null,
       [
+        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
         {
           text: 'Add',
           onPress: (text) => {
