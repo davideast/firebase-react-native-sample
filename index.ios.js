@@ -114,8 +114,7 @@ class FirebaseReactNativeSample extends Component {
         [
           {text: 'Complete', onPress: (text) => this.itemsRef.child(item._key).remove()},
           {text: 'Cancel', onPress: (text) => console.log('Cancelled')}
-        ],
-        'default'
+        ]
       );
     };
 
