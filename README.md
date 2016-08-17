@@ -27,5 +27,5 @@ const rootRef = firebase.database().ref();
 const itemsRef = rootRef.child('items');
 ```
 
-### [Tutorial (will be updated soon)- https://firebase.googleblog.com/2016/01/the-beginners-guide-to-react-native-and_84.html](https://firebase.googleblog.com/2016/01/the-beginners-guide-to-react-native-and_84.html)
+### [Tutorial - https://firebase.googleblog.com/2016/01/the-beginners-guide-to-react-native-and_84.html](https://firebase.googleblog.com/2016/01/the-beginners-guide-to-react-native-and_84.html)
 
