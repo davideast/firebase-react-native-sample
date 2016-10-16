@@ -18,7 +18,6 @@ const {
   StyleSheet,
   Text,
   View,
-  TouchableHighlight,
   AlertIOS,
 } = ReactNative;
 
