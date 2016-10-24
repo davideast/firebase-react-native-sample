@@ -6,8 +6,9 @@
     "start": "react-native start"
   },
   "dependencies": {
-    "firebase": "^3.1.0",
-    "react": "15.2.1",
-    "react-native": "^0.29.0"
+    "firebase": "^3.5.1",
+    "react": "15.3.2",
+    "react-native": "^0.35.0",
+    "react-native-prompt": "^0.18.5"
   }
 }
