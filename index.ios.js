@@ -97,7 +97,8 @@ class FirebaseReactNativeSample extends Component {
         {
           text: 'Add',
           onPress: (text) => {
-            this.itemsRef.push({ title: text })
+            if (text) { this.itemsRef.push({ title: text }) }       /** Will push only if text is not empty */
+            else { console.log("Text Input empty") }
           }
         },
       ],
@@ -109,7 +110,7 @@ class FirebaseReactNativeSample extends Component {
 
     const onPress = () => {
       AlertIOS.alert(
-        'Complete',
+        'Completed ' + item.title + ' ?' ,                            /** Just a small edit to confirm the item name */
         null,
         [
           {text: 'Complete', onPress: (text) => this.itemsRef.child(item._key).remove()},
